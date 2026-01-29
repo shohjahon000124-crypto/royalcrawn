@@ -1,0 +1,2796 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ansor Royal Crown | Эксклюзивный закрытый район в Душанбе</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A3D62;
+            --secondary: #D4AF37;
+            --accent: #3C6382;
+            --light: #F8F9FA;
+            --dark: #1A1A1A;
+            --success: #27AE60;
+            --warning: #F39C12;
+            --danger: #E74C3C;
+            --park: #229954;
+            --security: #CB4335;
+            --commerce: #2E86C1;
+            --residential: #8E44AD;
+            --pending: #F1C40F;
+            --approved: #2ECC71;
+            --rejected: #E74C3C;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        #preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--secondary);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+        
+        .loader-text {
+            color: white;
+            font-size: 18px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 61, 98, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 22px;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .logo-text h1 {
+            font-size: 22px;
+            color: white;
+            line-height: 1.2;
+        }
+        
+        .logo-text span {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .btn-outline {
+            padding: 8px 20px;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            background: transparent;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            font-weight: 300;
+        }
+        
+        .hero-tagline {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: rgba(212, 175, 55, 0.2);
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid var(--secondary);
+            backdrop-filter: blur(5px);
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            padding: 15px 35px;
+            background: var(--secondary);
+            color: var(--primary);
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-secondary {
+            padding: 15px 35px;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        /* Owner Section */
+        .owner-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .owner-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .owner-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        
+        .owner-img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .owner-badge {
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 12px 20px;
+            border-radius: 15px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+        }
+        
+        .owner-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .owner-info h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .owner-title {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .owner-quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            color: #555;
+            border-left: 4px solid var(--secondary);
+            padding-left: 20px;
+        }
+        
+        .owner-contact {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid var(--secondary);
+        }
+        
+        .owner-contact p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .owner-contact i {
+            color: var(--secondary);
+            width: 20px;
+        }
+        
+        /* Interactive Map Section */
+        .map-section {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, #0A3D62, #1A5276);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .interactive-map {
+            position: relative;
+            height: 600px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: linear-gradient(135deg, #1a5276 0%, #0a3d62 100%);
+        }
+        
+        .map-area {
+            position: absolute;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.4s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .map-area:hover {
+            transform: scale(1.08);
+            z-index: 10;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .map-area i {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .area-content {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .residential-area {
+            background: linear-gradient(135deg, rgba(142, 68, 173, 0.85), rgba(155, 89, 182, 0.95));
+            top: 15%;
+            left: 10%;
+            width: 250px;
+            height: 200px;
+        }
+        
+        .park-area {
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.85), rgba(46, 204, 113, 0.95));
+            top: 10%;
+            right: 5%;
+            width: 280px;
+            height: 240px;
+        }
+        
+        .security-area {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.85), rgba(192, 57, 43, 0.95));
+            bottom: 20%;
+            left: 5%;
+            width: 180px;
+            height: 180px;
+        }
+        
+        .commercial-area {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.85), rgba(41, 128, 185, 0.95));
+            bottom: 15%;
+            right: 10%;
+            width: 220px;
+            height: 200px;
+        }
+        
+        .private-area {
+            background: linear-gradient(135deg, rgba(230, 126, 34, 0.85), rgba(211, 84, 0, 0.95));
+            top: 40%;
+            left: 35%;
+            width: 170px;
+            height: 170px;
+        }
+        
+        .map-legend {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 250px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .legend-color {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .feature-content {
+            padding: 30px;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Price Section */
+        .price-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .price-container {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .price-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+        }
+        
+        .price-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .price-tag {
+            font-size: 3.5rem;
+            color: var(--secondary);
+            font-weight: 700;
+            margin: 25px 0;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .price-note {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 5px solid var(--secondary);
+        }
+        
+        /* Application Section */
+        .application-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+        }
+        
+        .application-container {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        
+        .application-form {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .application-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .info-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Manager Section */
+        .manager-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .manager-card {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+        }
+        
+        .manager-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            flex-shrink: 0;
+        }
+        
+        .manager-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .manager-info h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .manager-title {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .manager-contact {
+            margin-top: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            border-left: 5px solid var(--secondary);
+        }
+        
+        .manager-contact p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .manager-contact i {
+            color: var(--secondary);
+            width: 20px;
+        }
+        
+        /* Admin Panel */
+        .admin-section {
+            padding: 50px 0;
+            background: #1a1a1a;
+            color: white;
+            display: none;
+        }
+        
+        .admin-panel {
+            background: #2c3e50;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .admin-header {
+            background: #34495e;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .admin-title {
+            font-size: 1.8rem;
+        }
+        
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .stat-card {
+            background: #34495e;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .applications-list {
+            padding: 30px;
+        }
+        
+        .application-item {
+            background: #34495e;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            border-left: 5px solid var(--pending);
+        }
+        
+        .application-item:hover {
+            background: #3d566e;
+        }
+        
+        .application-item.approved {
+            border-left-color: var(--approved);
+        }
+        
+        .application-item.rejected {
+            border-left-color: var(--rejected);
+        }
+        
+        .application-content {
+            margin-bottom: 20px;
+        }
+        
+        .application-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-approve, .btn-reject, .btn-delete {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-approve {
+            background: var(--success);
+            color: white;
+        }
+        
+        .btn-approve:hover {
+            background: #229954;
+        }
+        
+        .btn-reject {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .btn-reject:hover {
+            background: #cb4335;
+        }
+        
+        .btn-delete {
+            background: #7f8c8d;
+            color: white;
+        }
+        
+        .btn-delete:hover {
+            background: #616a6b;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalFadeIn 0.5s;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            background: var(--primary);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 25px 25px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+        
+        .modal-close:hover {
+            color: var(--secondary);
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 15px;
+            color: white;
+            font-weight: 600;
+            z-index: 3000;
+            animation: slideIn 0.3s ease-out;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 350px;
+            word-break: break-word;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .notification.success {
+            background: var(--success);
+        }
+        
+        .notification.error {
+            background: var(--danger);
+        }
+        
+        .notification.warning {
+            background: var(--warning);
+        }
+        
+        /* Status Badges */
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-pending {
+            background: rgba(241, 196, 15, 0.2);
+            color: #f1c40f;
+            border: 1px solid rgba(241, 196, 15, 0.3);
+        }
+        
+        .status-approved {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+        }
+        
+        .status-rejected {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .owner-info h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .map-area {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .main-nav {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(10, 61, 98, 0.98);
+                flex-direction: column;
+                padding: 100px 30px 30px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                text-align: center;
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            
+            .main-nav.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .owner-container, .application-container, .manager-card {
+                flex-direction: column;
+            }
+            
+            .owner-image, .owner-info, .application-form, .application-info, .manager-info {
+                width: 100%;
+            }
+            
+            .owner-badge {
+                bottom: -10px;
+                right: -10px;
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+            
+            .interactive-map {
+                height: 500px;
+            }
+            
+            .map-area {
+                width: 150px !important;
+                height: 130px !important;
+                font-size: 12px;
+            }
+            
+            .map-area i {
+                font-size: 20px;
+            }
+            
+            .map-legend {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                max-width: 100%;
+                margin-top: 20px;
+            }
+            
+            .admin-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 600px;
+                background-attachment: scroll;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .tag {
+                font-size: 13px;
+                padding: 6px 15px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title p {
+                font-size: 1rem;
+            }
+            
+            .owner-info h2 {
+                font-size: 1.8rem;
+            }
+            
+            .owner-quote {
+                font-size: 1.1rem;
+            }
+            
+            .feature-card {
+                margin-bottom: 20px;
+            }
+            
+            .price-tag {
+                font-size: 2.8rem;
+            }
+            
+            .price-card {
+                padding: 30px 20px;
+            }
+            
+            .application-form, .info-card {
+                padding: 30px 20px;
+            }
+            
+            .manager-photo {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .manager-info h3 {
+                font-size: 1.8rem;
+            }
+            
+            .admin-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stat-value {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .notification {
+                left: 20px;
+                right: 20px;
+                max-width: calc(100% - 40px);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .logo-text h1 {
+                font-size: 18px;
+            }
+            
+            .logo-text span {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .btn-primary, .btn-secondary {
+                padding: 12px 25px;
+                font-size: 15px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+            
+            .owner-info h2 {
+                font-size: 1.6rem;
+            }
+            
+            .owner-quote {
+                font-size: 1rem;
+            }
+            
+            .interactive-map {
+                height: 400px;
+            }
+            
+            .map-area {
+                width: 120px !important;
+                height: 100px !important;
+                font-size: 11px;
+            }
+            
+            .map-area i {
+                font-size: 18px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .price-tag {
+                font-size: 2.2rem;
+            }
+            
+            .manager-card {
+                padding: 30px 20px;
+            }
+            
+            .manager-photo {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .admin-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .application-actions {
+                flex-direction: column;
+            }
+            
+            .btn-approve, .btn-reject, .btn-delete {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .modal-content {
+                border-radius: 15px;
+            }
+            
+            .modal-header {
+                padding: 20px;
+            }
+            
+            .modal-title {
+                font-size: 1.5rem;
+            }
+            
+            .modal-body {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .hero-tagline {
+                gap: 10px;
+            }
+            
+            .tag {
+                padding: 5px 12px;
+                font-size: 12px;
+            }
+            
+            .map-area {
+                width: 100px !important;
+                height: 90px !important;
+                font-size: 10px;
+            }
+            
+            .map-area i {
+                font-size: 16px;
+            }
+        }
+        
+        /* Mobile Navigation Fixes */
+        .nav-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            display: none;
+            z-index: 1002;
+        }
+        
+        @media (max-width: 992px) {
+            .nav-close-btn {
+                display: block;
+            }
+        }
+        
+        /* Fix for mobile menu scroll */
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        /* Touch-friendly elements */
+        button, .btn-primary, .btn-secondary, .btn-outline, .map-area {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Improve form touch experience */
+        input, select, textarea {
+            font-size: 16px; /* Prevents zoom on iOS */
+        }
+        
+        /* Better scroll on mobile */
+        .modal-content {
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Fix for iOS Safari */
+        @supports (-webkit-touch-callout: none) {
+            .hero {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+        <div class="loader-text">ANSOR ROYAL CROWN</div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>ANSOR ROYAL CROWN</h1>
+                    <span>Эксклюзивный район | Душанбе</span>
+                </div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <button class="nav-close-btn" id="navCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <nav class="main-nav" id="mainNav">
+                <a href="#home" class="nav-link">Главная</a>
+                <a href="#owner" class="nav-link">Владелец</a>
+                <a href="#map" class="nav-link">3D Район</a>
+                <a href="#features" class="nav-link">Особенности</a>
+                <a href="#price" class="nav-link">Цены</a>
+                <a href="#application" class="nav-link">Заявка</a>
+                <a href="#manager" class="nav-link">Менеджер</a>
+                <a href="#contacts" class="nav-link">Контакты</a>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="btn-outline" id="adminBtn">
+                    <i class="fas fa-user-shield"></i> Админ
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content animate">
+                <h1>ANSOR ROYAL CROWN</h1>
+                <div class="hero-subtitle">Эксклюзивный закрытый район премиум-класса в Душанбе</div>
+                
+                <div class="hero-tagline">
+                    <span class="tag">Престиж</span>
+                    <span class="tag">Безопасность</span>
+                    <span class="tag">Комфорт</span>
+                    <span class="tag">Экология</span>
+                    <span class="tag">Конфиденциальность</span>
+                </div>
+                
+                <p style="margin-bottom: 40px; font-size: 1.1rem; max-width: 800px; line-height: 1.6;">
+                    Первый в Таджикистане закрытый район класса люкс с собственной инфраструктурой, 
+                    охраняемой территорией и эксклюзивными резиденциями. Здесь создана идеальная среда для жизни, 
+                    отдыха и развития вашей семьи.
+                </p>
+                
+                <div class="hero-btns">
+                    <button class="btn-primary" id="exploreBtn">
+                        <i class="fas fa-map-marked-alt"></i> Исследовать 3D район
+                    </button>
+                    <button class="btn-secondary" id="bookTourBtn">
+                        <i class="fas fa-calendar-check"></i> Забронировать тур
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Owner Section -->
+    <section class="owner-section" id="owner">
+        <div class="container">
+            <div class="owner-container">
+                <div class="owner-image animate">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Владелец Ансор" class="owner-img">
+                    <div class="owner-badge">ВЛАДЕЛЕЦ</div>
+                </div>
+                
+                <div class="owner-info animate">
+                    <h2>Ансор</h2>
+                    <div class="owner-title">Основатель и владелец Royal Crown Estate</div>
+                    
+                    <blockquote class="owner-quote">
+                        "Я создал Royal Crown Estate как место, где каждая семья может ощутить настоящий покой, безопасность и комфорт. Это не просто дома - это философия жизни."
+                    </blockquote>
+                    
+                    <p style="margin-bottom: 20px; line-height: 1.6;">
+                        С более чем 15-летним опытом в девелопменте премиальной недвижимости, Ансор лично курирует каждый проект, 
+                        уделяя внимание деталям, качеству материалов и созданию уникальной атмосферы для жителей.
+                    </p>
+                    
+                    <div class="owner-contact">
+                        <p>
+                            <i class="fas fa-phone"></i>
+                            <strong>Телефон:</strong> +992 907 787 895
+                        </p>
+                        <p>
+                            <i class="fas fa-envelope"></i>
+                            <strong>Email:</strong> ansorsangov62@gmail.com
+                        </p>
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <strong>Адрес:</strong> Душанбе, Royal Crown Estate
+                        </p>
+                        <p>
+                            <i class="fas fa-clock"></i>
+                            <strong>График встреч:</strong> По предварительной записи
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section class="map-section" id="map">
+        <div class="container">
+            <div class="section-title animate">
+                <h2>Интерактивная 3D Карта Района</h2>
+                <p>Исследуйте инфраструктуру Royal Crown Estate. Нажмите на любой объект для получения детальной информации</p>
+            </div>
+            
+            <div class="interactive-map">
+                <div class="map-container">
+                    <!-- Residential Area -->
+                    <div class="map-area residential-area" id="residentialArea">
+                        <div class="area-content">
+                            <i class="fas fa-home"></i>
+                            <h3>Эксклюзивные Резиденции</h3>
+                            <p>15 уникальных вилл и особняков</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Park Area -->
+                    <div class="map-area park-area" id="parkArea">
+                        <div class="area-content">
+                            <i class="fas fa-tree"></i>
+                            <h3>Центральный Парк</h3>
+                            <p>5 га приватной парковой зоны</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Security Area -->
+                    <div class="map-area security-area" id="securityArea">
+                        <div class="area-content">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>КПП и Охрана</h3>
+                            <p>Круглосуточная система безопасности</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Commercial Area -->
+                    <div class="map-area commercial-area" id="commercialArea">
+                        <div class="area-content">
+                            <i class="fas fa-shopping-bag"></i>
+                            <h3>Коммерческая зона</h3>
+                            <p>Магазины, рестораны, SPA, фитнес</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Private Area -->
+                    <div class="map-area private-area" id="privateArea">
+                        <div class="area-content">
+                            <i class="fas fa-user-secret"></i>
+                            <h3>Личный участок</h3>
+                            <p>Участок 12 соток с GB</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Map Legend -->
+                    <div class="map-legend">
+                        <h4 style="margin-bottom: 15px; color: var(--secondary); font-size: 16px;">Легенда карты:</h4>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: var(--residential);"></div>
+                            <span>Резиденции</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: var(--park);"></div>
+                            <span>Парковая зона</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: var(--security);"></div>
+                            <span>Охрана и КПП</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: var(--commerce);"></div>
+                            <span>Коммерция</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-title" style="color: var(--primary);">
+                <h2>Особенности Района</h2>
+                <p>Royal Crown Estate предлагает непревзойденный уровень жизни в Душанбе</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card animate">
+                    <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="feature-content">
+                        <h3>Личная Охраняемая Территория</h3>
+                        <p>Круглосуточная охрана, видеонаблюдение, КПП с распознаванием номеров, частная служба безопасности.</p>
+                        <ul style="margin-top: 15px; padding-left: 20px;">
+                            <li>Патрулирование территории 24/7</li>
+                            <li>Система "Умный дом" в каждой резиденции</li>
+                            <li>Персональные сейфовые комнаты</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-card animate">
+                    <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1571624436279-b272aff752b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="feature-content">
+                        <h3>Центральный Парк и Инфраструктура</h3>
+                        <p>5 гектаров парковой зоны с озерами, детскими площадками, зонами для барбекю и пешеходными дорожками.</p>
+                        <ul style="margin-top: 15px; padding-left: 20px;">
+                            <li>Собственный фитнес-центр и SPA</li>
+                            <li>Детский клуб и школа развития</li>
+                            <li>Рестораны и кафе премиум-класса</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-card animate">
+                    <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="feature-content">
+                        <h3>Эксклюзивные Резиденции</h3>
+                        <p>15 уникальных вилл с индивидуальной архитектурой, от 500 до 1200 м², на участках от 10 до 25 соток.</p>
+                        <ul style="margin-top: 15px; padding-left: 20px;">
+                            <li>Авторские проекты известных архитекторов</li>
+                            <li>Экологичные материалы и smart-технологии</li>
+                            <li>Собственные бассейны и сады</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Price Section -->
+    <section class="price-section" id="price">
+        <div class="container">
+            <div class="section-title" style="color: var(--primary);">
+                <h2>Стоимость и Условия</h2>
+                <p>Индивидуальный подход к каждому клиенту</p>
+            </div>
+            
+            <div class="price-container">
+                <div class="price-card animate">
+                    <h3 class="price-title">Стоимость резиденций</h3>
+                    
+                    <div class="price-tag">ДОГОВОРНАЯ</div>
+                    
+                    <div class="price-note">
+                        <h4 style="color: var(--primary); margin-bottom: 10px; font-size: 1.2rem;">Индивидуальный расчет</h4>
+                        <p>Стоимость каждой резиденции рассчитывается индивидуально в зависимости от выбранного участка, проекта дома, отделочных материалов и дополнительных опций.</p>
+                    </div>
+                    
+                    <div style="margin: 25px 0;">
+                        <h4 style="color: var(--primary); margin-bottom: 15px; font-size: 1.2rem;">Что включено в стоимость:</h4>
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 15px;">
+                            <div style="text-align: left;">
+                                <p><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Полностью подготовленный участок</p>
+                                <p><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Все инженерные коммуникации</p>
+                                <p><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Система безопасности участка</p>
+                            </div>
+                            <div style="text-align: left;">
+                                <p><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Доступ ко всей инфраструктуре района</p>
+                                <p><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Годовое обслуживание территории</p>
+                                <p><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Консьерж-сервис 24/7</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 1.1rem; margin-top: 25px;">
+                        Для получения детального коммерческого предложения, пожалуйста, оставьте заявку или свяжитесь с нашим менеджером по продажам.
+                    </p>
+                    
+                    <button class="btn-primary" style="margin-top: 25px; width: 100%;" id="getPriceBtn">
+                        <i class="fas fa-file-contract"></i> Получить коммерческое предложение
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Section -->
+    <section class="application-section" id="application">
+        <div class="container">
+            <div class="section-title">
+                <h2>Подача заявки</h2>
+                <p>Оставьте заявку для получения персонального предложения и организации private тура</p>
+            </div>
+            
+            <div class="application-container">
+                <div class="application-form animate">
+                    <h3 class="form-title">Персональная заявка</h3>
+                    <form id="mainApplicationForm">
+                        <div class="form-group">
+                            <label class="form-label">Полное имя *</label>
+                            <input type="text" class="form-control" id="clientName" placeholder="Иван Иванов" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Телефон *</label>
+                            <input type="tel" class="form-control" id="clientPhone" placeholder="+992 123 456 789" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email *</label>
+                            <input type="email" class="form-control" id="clientEmail" placeholder="ivan@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Интересующий объект</label>
+                            <select class="form-control" id="interestObject">
+                                <option value="villa">Вилла (500-800 м²)</option>
+                                <option value="mansion">Особняк (800-1200 м²)</option>
+                                <option value="consultation">Консультация</option>
+                                <option value="tour">Private тур по району</option>
+                                <option value="price">Коммерческое предложение</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Ваше сообщение</label>
+                            <textarea class="form-control" id="clientMessage" rows="4" placeholder="Расскажите о ваших пожеланиях, бюджете и сроках..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">
+                            <i class="fas fa-paper-plane"></i> Отправить заявку
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="application-info animate">
+                    <div class="info-card">
+                        <h3>Процесс рассмотрения</h3>
+                        <p>После получения вашей заявки с вами свяжется личный менеджер для уточнения деталей и организации персональной встречи с владельцем или главным менеджером.</p>
+                        
+                        <div style="margin-top: 25px;">
+                            <h4 style="margin-bottom: 15px; font-size: 1.2rem;">Этапы:</h4>
+                            <ol style="padding-left: 20px;">
+                                <li style="margin-bottom: 10px;">Первичная консультация по телефону</li>
+                                <li style="margin-bottom: 10px;">Private тур по району</li>
+                                <li style="margin-bottom: 10px;">Выбор участка и проекта</li>
+                                <li style="margin-bottom: 10px;">Расчет стоимости и подготовка договора</li>
+                                <li>Оформление сделки и передача ключей</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manager Section -->
+    <section class="manager-section" id="manager">
+        <div class="container">
+            <div class="section-title" style="color: var(--primary); margin-bottom: 50px;">
+                <h2>Главный менеджер по продажам</h2>
+                <p>Ваш персональный консультант по всем вопросам</p>
+            </div>
+            
+            <div class="manager-card animate">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Шохджахон Каримов" class="manager-photo">
+                
+                <div class="manager-info">
+                    <h3>Шохджахон Каримов</h3>
+                    <div class="manager-title">Главный менеджер по продажам Royal Crown Estate</div>
+                    
+                    <p style="margin-bottom: 20px; line-height: 1.6;">
+                        Специалист с 10-летним опытом работы в сфере элитной недвижимости. Шохджахон сопровождает клиентов на всех этапах сделки - от первого знакомства с районом до передачи ключей.
+                    </p>
+                    
+                    <p style="margin-bottom: 20px; line-height: 1.6;">
+                        Лично курирует каждого клиента, обеспечивая максимальный комфорт и конфиденциальность на всех этапах покупки.
+                    </p>
+                    
+                    <div class="manager-contact">
+                        <p>
+                            <i class="fas fa-phone"></i>
+                            <strong>Телефон:</strong> +992 906 550 990
+                        </p>
+                        <p>
+                            <i class="fas fa-envelope"></i>
+                            <strong>Email:</strong> shohjahon000124@gmail.com
+                        </p>
+                        <p>
+                            <i class="fas fa-clock"></i>
+                            <strong>График:</strong> Пн-Сб, 9:00-20:00
+                        </p>
+                        <p>
+                            <i class="fas fa-comments"></i>
+                            <strong>Telegram/WhatsApp:</strong> +992 906 550 990
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Panel (Hidden by default) -->
+    <section class="admin-section" id="adminPanel">
+        <div class="container">
+            <div class="admin-panel">
+                <div class="admin-header">
+                    <h2 class="admin-title">Панель администратора Ansor Royal Crown</h2>
+                    <button class="btn-outline" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </button>
+                </div>
+                
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalApplications">0</div>
+                        <p>Всего заявок</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-value" id="newApplications">0</div>
+                        <p>Новые заявки</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-value" id="approvedApplications">0</div>
+                        <p>Одобрено</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-value" id="rejectedApplications">0</div>
+                        <p>Отклонено</p>
+                    </div>
+                </div>
+                
+                <div class="applications-list">
+                    <h3 style="margin-bottom: 20px; font-size: 1.5rem;">Управление заявками</h3>
+                    <div id="applicationsContainer">
+                        <!-- Applications will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacts">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <i class="fas fa-crown"></i> ANSOR ROYAL CROWN
+                    </div>
+                    <p style="margin-bottom: 20px; line-height: 1.6;">
+                        Первый закрытый премиум-район в Душанбе, создающий новый стандарт жизни для элиты Таджикистана.
+                    </p>
+                    <p>
+                        <i class="fas fa-map-marker-alt" style="margin-right: 10px; color: var(--secondary);"></i> 
+                        Душанбе, район Royal Crown Estate
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#owner">Владелец</a></li>
+                        <li><a href="#map">3D Карта района</a></li>
+                        <li><a href="#features">Особенности</a></li>
+                        <li><a href="#price">Цены</a></li>
+                        <li><a href="#manager">Менеджер</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Резиденции</h3>
+                    <ul>
+                        <li><a href="#villas">Виллы</a></li>
+                        <li><a href="#mansions">Особняки</a></li>
+                        <li><a href="#architecture">Архитектура</a></li>
+                        <li><a href="#security">Безопасность</a></li>
+                        <li><a href="#infrastructure">Инфраструктура</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><a href="tel:+992907787895"><i class="fas fa-phone" style="margin-right: 10px;"></i> +992 907 787 895 (Ансор)</a></li>
+                        <li><a href="tel:+992906550990"><i class="fas fa-phone" style="margin-right: 10px;"></i> +992 906 550 990 (Шохджахон)</a></li>
+                        <li><a href="mailto:ansorsangov62@gmail.com"><i class="fas fa-envelope" style="margin-right: 10px;"></i> ansorsangov62@gmail.com</a></li>
+                        <li><a href="mailto:shohjahon000124@gmail.com"><i class="fas fa-envelope" style="margin-right: 10px;"></i> shohjahon000124@gmail.com</a></li>
+                        <li><i class="fas fa-clock" style="margin-right: 10px;"></i> Ежедневно 9:00 - 21:00</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 ANSOR ROYAL CROWN ESTATE. Все права защищены.</p>
+                <p>Сайт разработан для презентации эксклюзивного закрытого района в Душанбе.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Area Details Modal -->
+    <div class="modal" id="areaModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Информация о зоне</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3 class="modal-title">Вход для администратора</h3>
+                <button class="modal-close" id="closeLoginModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label style="color: #333;">Логин</label>
+                        <input type="text" class="form-control" id="adminLogin" placeholder="Введите логин" style="color: #333; background: #f5f5f5; border-color: #ddd;" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label style="color: #333;">Пароль</label>
+                        <input type="password" class="form-control" id="adminPassword" placeholder="Введите пароль" style="color: #333; background: #f5f5f5; border-color: #ddd;" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">
+                        <i class="fas fa-sign-in-alt"></i> Войти
+                    </button>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: #fff8e1; border-radius: 10px;">
+                        <h4 style="color: #d35400; margin-bottom: 10px; font-size: 1.1rem;">Демо-доступ для тестирования:</h4>
+                        <p style="color: #666; margin-bottom: 5px;"><strong>Логин:</strong> <code>admin</code></p>
+                        <p style="color: #666; margin-bottom: 5px;"><strong>Пароль:</strong> <code>royalcrown2023</code></p>
+                        <p style="color: #666; font-size: 13px; margin-top: 10px;">В реальной системе доступ только у владельца Ансора</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('preloader').classList.add('fade-out');
+                setTimeout(() => {
+                    document.getElementById('preloader').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Mobile Menu Functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navCloseBtn = document.getElementById('navCloseBtn');
+        const mainNav = document.getElementById('mainNav');
+        const body = document.body;
+
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.add('active');
+            body.classList.add('menu-open');
+            mobileMenuBtn.style.display = 'none';
+            navCloseBtn.style.display = 'block';
+        });
+
+        navCloseBtn.addEventListener('click', function() {
+            mainNav.classList.remove('active');
+            body.classList.remove('menu-open');
+            mobileMenuBtn.style.display = 'block';
+            navCloseBtn.style.display = 'none';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                body.classList.remove('menu-open');
+                mobileMenuBtn.style.display = 'block';
+                navCloseBtn.style.display = 'none';
+            });
+        });
+
+        // Close mobile menu on window resize (if resized to desktop)
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 992) {
+                mainNav.classList.remove('active');
+                body.classList.remove('menu-open');
+                mobileMenuBtn.style.display = 'none';
+                navCloseBtn.style.display = 'none';
+            } else if (window.innerWidth <= 992 && mainNav.classList.contains('active')) {
+                mobileMenuBtn.style.display = 'none';
+                navCloseBtn.style.display = 'block';
+            } else {
+                mobileMenuBtn.style.display = 'block';
+                navCloseBtn.style.display = 'none';
+            }
+        });
+
+        // Area Modals
+        const areaModal = document.getElementById('areaModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const closeModal = document.getElementById('closeModal');
+
+        // Area Data
+        const areaData = {
+            residentialArea: {
+                title: "Эксклюзивные Резиденции",
+                content: `
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">15 уникальных вилл и особняков</h4>
+                    <p>Каждая резиденция в Royal Crown Estate - это уникальный архитектурный проект, созданный ведущими дизайнерами Европы и Азии.</p>
+                    
+                    <div style="margin: 25px 0;">
+                        <h5 style="color: var(--primary); margin-bottom: 10px;">Характеристики:</h5>
+                        <ul style="padding-left: 20px;">
+                            <li style="margin-bottom: 8px;">Площадь: 500-1200 м²</li>
+                            <li style="margin-bottom: 8px;">Участок: 10-25 соток</li>
+                            <li style="margin-bottom: 8px;">Спальни: 4-7</li>
+                            <li style="margin-bottom: 8px;">Бассейн и сауна</li>
+                            <li>Умный дом (полная автоматизация)</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h5 style="color: var(--primary); margin-bottom: 10px;">Доступные проекты:</h5>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 15px;">
+                            <div style="text-align: center; padding: 15px; background: white; border-radius: 8px;">
+                                <div style="font-weight: 700; color: var(--secondary);">Villa Classica</div>
+                                <div style="font-size: 14px; color: #666;">500-700 м²</div>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: white; border-radius: 8px;">
+                                <div style="font-weight: 700; color: var(--secondary);">Mansion Royal</div>
+                                <div style="font-size: 14px; color: #666;">800-1000 м²</div>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: white; border-radius: 8px;">
+                                <div style="font-weight: 700; color: var(--secondary);">Palazzo Elite</div>
+                                <div style="font-size: 14px; color: #666;">1000-1200 м²</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Все резиденции оснащены подземными паркингами на 2-4 автомобиля, системами безопасности и видеонаблюдения, а также возможностью индивидуальной планировки.</strong></p>
+                `
+            },
+            parkArea: {
+                title: "Центральный Парк Района",
+                content: `
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">5 гектаров зелёной зоны</h4>
+                    <p>Сердце Royal Crown Estate - масштабный парк с уникальным ландшафтным дизайном, созданный для отдыха и релаксации жителей.</p>
+                    
+                    <div style="margin: 25px 0;">
+                        <h5 style="color: var(--primary); margin-bottom: 15px;">Инфраструктура парка:</h5>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                            <div style="background: #f5f5f5; padding: 15px; border-radius: 10px; text-align: center;">
+                                <i class="fas fa-swimming-pool" style="color: var(--park); font-size: 24px; margin-bottom: 10px;"></i>
+                                <div style="font-weight: 600; font-size: 14px;">Искусственное озеро с фонтанами</div>
+                            </div>
+                            <div style="background: #f5f5f5; padding: 15px; border-radius: 10px; text-align: center;">
+                                <i class="fas fa-child" style="color: var(--park); font-size: 24px; margin-bottom: 10px;"></i>
+                                <div style="font-weight: 600; font-size: 14px;">3 детские площадки разных возрастов</div>
+                            </div>
+                            <div style="background: #f5f5f5; padding: 15px; border-radius: 10px; text-align: center;">
+                                <i class="fas fa-dumbbell" style="color: var(--park); font-size: 24px; margin-bottom: 10px;"></i>
+                                <div style="font-weight: 600; font-size: 14px;">Спортивные зоны (тренажеры, беговые дорожки)</div>
+                            </div>
+                            <div style="background: #f5f5f5; padding: 15px; border-radius: 10px; text-align: center;">
+                                <i class="fas fa-utensils" style="color: var(--park); font-size: 24px; margin-bottom: 10px;"></i>
+                                <div style="font-weight: 600; font-size: 14px;">Зоны для пикников с мангалами</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Парк освещается уникальной системой светодиодного освещения, создающей волшебную атмосферу в вечернее время. По территории проложены беговые и велосипедные дорожки протяженностью 3.5 км.</strong></p>
+                `
+            },
+            securityArea: {
+                title: "Система Безопасности",
+                content: `
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">Круглосуточная охраняемая территория</h4>
+                    <p>Royal Crown Estate - это закрытый район с максимальным уровнем безопасности для жителей. Система разработана по стандартам охраны VIP-объектов.</p>
+                    
+                    <div style="margin: 25px 0;">
+                        <h5 style="color: var(--primary); margin-bottom: 15px;">Многоуровневая система защиты:</h5>
+                        <ul style="padding-left: 20px; margin-top: 15px;">
+                            <li style="margin-bottom: 10px;"><strong style="color: var(--security);">КПП с биометрикой</strong> - контроль доступа по отпечаткам пальцев, распознавание лиц и автомобильных номеров.</li>
+                            <li style="margin-bottom: 10px;"><strong style="color: var(--security);">Патрулирование 24/7</strong> - вооруженная охрана и служебные собаки.</li>
+                            <li style="margin-bottom: 10px;"><strong style="color: var(--security);">Видеонаблюдение</strong> - 150+ камер с ИИ-аналитикой по всей территории.</li>
+                            <li style="margin-bottom: 10px;"><strong style="color: var(--security);">Тревожные кнопки</strong> - в каждой резиденции и по всему району.</li>
+                            <li><strong style="color: var(--security);">Частная служба быстрого реагирования</strong> - выезд в течение 3 минут.</li>
+                        </ul>
+                    </div>
+                    
+                    <p style="margin-top: 20px;"><strong>Все сотрудники безопасности проходят строгий отбор, медицинское обследование и регулярное обучение. Ежегодные учения по действиям в чрезвычайных ситуациях.</strong></p>
+                `
+            },
+            commercialArea: {
+                title: "Коммерческая Инфраструктура",
+                content: `
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">Все необходимое в шаговой доступности</h4>
+                    <p>В Royal Crown Estate создана собственная инфраструктура для максимального комфорта жителей. Все объекты соответствуют премиум-стандартам района.</p>
+                    
+                    <div style="margin: 25px 0;">
+                        <h5 style="color: var(--primary); margin-bottom: 15px;">Объекты инфраструктуры:</h5>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 15px;">
+                            <div style="background: #f5f5f5; padding: 15px; border-radius: 10px; text-align: center;">
+                                <i class="fas fa-shopping-bag" style="color: var(--commerce); font-size: 24px; margin-bottom: 10px;"></i>
+                                <div style="font-weight: 600; font-size: 14px;">Премиум-маркет</div>
+                                <div style="font-size: 12px; color: #666; margin-top: 5px;">Продукты 24/7</div>
+                            </div>
+                            <div style="background: #f5f5f5; padding: 15px; border-radius: 10px; text-align: center;">
+                                <i class="fas fa-utensils" style="color: var(--commerce); font-size: 24px; margin-bottom: 10px;"></i>
+                                <div style="font-weight: 600; font-size: 14px;">Ресторан "La Couronne"</div>
+                                <div style="font-size: 12px; color: #666; margin-top: 5px;">Французская кухня</div>
+                            </div>
+                            <div style="background: #f5f5f5; padding: 15px; border-radius: 10px; text-align: center;">
+                                <i class="fas fa-pills" style="color: var(--commerce); font-size: 24px; margin-bottom: 10px;"></i>
+                                <div style="font-weight: 600; font-size: 14px;">Аптека 24/7</div>
+                                <div style="font-size: 12px; color: #666; margin-top: 5px;">Доставка лекарств</div>
+                            </div>
+                            <div style="background: #f5f5f5; padding: 15px; border-radius: 10px; text-align: center;">
+                                <i class="fas fa-spa" style="color: var(--commerce); font-size: 24px; margin-bottom: 10px;"></i>
+                                <div style="font-weight: 600; font-size: 14px;">SPA-центр "Royal Spa"</div>
+                                <div style="font-size: 12px; color: #666; margin-top: 5px;">Процедуры премиум</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 20px;"><strong>Все коммерческие объекты работают исключительно для жителей района и их гостей. Посторонние лица не имеют доступа к инфраструктуре.</strong></p>
+                `
+            },
+            privateArea: {
+                title: "Личный Участок и GB (Гостевой Блок)",
+                content: `
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">Эксклюзивный участок 12 соток</h4>
+                    <p>Предлагается к продаже последний свободный участок в Royal Crown Estate с возможностью строительства резиденции по индивидуальному проекту.</p>
+                    
+                    <div style="margin: 25px 0;">
+                        <h5 style="color: var(--primary); margin-bottom: 10px;">Характеристики участка:</h5>
+                        <ul style="padding-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Площадь:</strong> 12 соток</li>
+                            <li style="margin-bottom: 8px;"><strong>Форма:</strong> прямоугольная</li>
+                            <li style="margin-bottom: 8px;"><strong>Ориентация:</strong> южная (солнечная сторона)</li>
+                            <li style="margin-bottom: 8px;"><strong>Коммуникации:</strong> полностью подведены</li>
+                            <li><strong>Вид:</strong> на центральный парк</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: #fff8e1; padding: 20px; border-radius: 15px; margin: 25px 0; border: 2px solid var(--secondary);">
+                        <h5 style="color: #d35400; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-gift"></i> Особое предложение:
+                        </h5>
+                        <p style="margin-bottom: 15px;">При покупке участка до 31 декабря 2023 года:</p>
+                        <ul style="padding-left: 20px;">
+                            <li style="margin-bottom: 10px;">Бесплатный архитектурный проект резиденции от нашего бюро</li>
+                            <li style="margin-bottom: 10px;">Скидка 10% на строительные материалы от партнеров</li>
+                            <li>Бесплатный год обслуживания территории</li>
+                        </ul>
+                    </div>
+                `
+            }
+        };
+
+        // Open area modal on click
+        document.querySelectorAll('.map-area').forEach(area => {
+            area.addEventListener('click', function() {
+                const areaId = this.id;
+                if (areaData[areaId]) {
+                    modalTitle.textContent = areaData[areaId].title;
+                    modalBody.innerHTML = areaData[areaId].content;
+                    areaModal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', function() {
+            areaModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Application Form
+        document.getElementById('mainApplicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
+            const email = document.getElementById('clientEmail').value;
+            const interest = document.getElementById('interestObject').value;
+            const message = document.getElementById('clientMessage').value;
+            
+            // Validate phone
+            const phoneRegex = /^[+]?[0-9\s\-\(\)]+$/;
+            if (!phoneRegex.test(phone)) {
+                showNotification('Пожалуйста, введите корректный номер телефона', 'error');
+                return;
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('Пожалуйста, введите корректный email адрес', 'error');
+                return;
+            }
+            
+            // Save application to localStorage
+            const applications = JSON.parse(localStorage.getItem('ansorRoyalCrownApplications')) || [];
+            const newApplication = {
+                id: Date.now(),
+                name: name,
+                phone: phone,
+                email: email,
+                interest: interest,
+                message: message,
+                date: new Date().toLocaleString('ru-RU'),
+                status: 'pending',
+                assignedTo: 'Шохджахон Каримов',
+                notes: ''
+            };
+            
+            applications.push(newApplication);
+            localStorage.setItem('ansorRoyalCrownApplications', JSON.stringify(applications));
+            
+            // Show success message
+            showNotification(`Спасибо, ${name}! Ваша заявка №${newApplication.id} принята. Шохджахон Каримов свяжется с вами в течение 2 часов.`, 'success');
+            
+            // Reset form
+            this.reset();
+            
+            // Update admin panel if visible
+            if (document.getElementById('adminPanel').style.display === 'block') {
+                updateAdminPanel();
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Get Price Button
+        document.getElementById('getPriceBtn').addEventListener('click', function() {
+            document.getElementById('application').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('interestObject').value = 'price';
+            document.getElementById('clientMessage').value = 'Интересует детальное коммерческое предложение по резиденциям в Royal Crown Estate. Прошу рассчитать стоимость.';
+        });
+
+        // Login functionality
+        const loginModalElement = document.getElementById('loginModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const adminBtn = document.getElementById('adminBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const loginForm = document.getElementById('loginForm');
+        const adminPanel = document.getElementById('adminPanel');
+
+        adminBtn.addEventListener('click', function() {
+            loginModalElement.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeLoginModal.addEventListener('click', function() {
+            loginModalElement.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const login = document.getElementById('adminLogin').value;
+            const password = document.getElementById('adminPassword').value;
+            
+            // Demo credentials - in real system this would be server-side
+            const validCredentials = [
+                { login: 'admin', password: 'royalcrown2023', name: 'Администратор' },
+                { login: 'ansor', password: 'ansor2023', name: 'Ансор (Владелец)' },
+                { login: 'shoh', password: 'shoh2023', name: 'Шохджахон Каримов' }
+            ];
+            
+            const validUser = validCredentials.find(user => user.login === login && user.password === password);
+            
+            if (validUser) {
+                // Hide login modal
+                loginModalElement.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                // Show admin panel
+                adminPanel.style.display = 'block';
+                
+                // Update admin panel data
+                updateAdminPanel();
+                
+                // Show welcome message
+                showNotification(`Добро пожаловать, ${validUser.name}!`, 'success');
+                
+                // Scroll to admin panel
+                setTimeout(() => {
+                    adminPanel.scrollIntoView({ behavior: 'smooth' });
+                }, 300);
+            } else {
+                showNotification('Неверный логин или пароль', 'error');
+            }
+        });
+
+        logoutBtn.addEventListener('click', function() {
+            adminPanel.style.display = 'none';
+            showNotification('Вы вышли из панели администратора', 'warning');
+        });
+
+        // Show notification function
+        function showNotification(message, type) {
+            const notificationContainer = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 15px;">
+                    <span>${message}</span>
+                    <button style="background: none; border: none; color: white; cursor: pointer; font-size: 18px; flex-shrink: 0;" onclick="this.parentElement.parentElement.remove()">&times;</button>
+                </div>
+            `;
+            
+            notificationContainer.appendChild(notification);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        // Update admin panel with applications
+        function updateAdminPanel() {
+            const applications = JSON.parse(localStorage.getItem('ansorRoyalCrownApplications')) || [];
+            
+            // Update stats
+            const total = applications.length;
+            const pending = applications.filter(app => app.status === 'pending').length;
+            const approved = applications.filter(app => app.status === 'approved').length;
+            const rejected = applications.filter(app => app.status === 'rejected').length;
+            
+            document.getElementById('totalApplications').textContent = total;
+            document.getElementById('newApplications').textContent = pending;
+            document.getElementById('approvedApplications').textContent = approved;
+            document.getElementById('rejectedApplications').textContent = rejected;
+            
+            // Update applications list
+            const applicationsContainer = document.getElementById('applicationsContainer');
+            applicationsContainer.innerHTML = '';
+            
+            if (applications.length === 0) {
+                applicationsContainer.innerHTML = '<p style="text-align: center; color: #999; padding: 40px;">Заявок пока нет</p>';
+            } else {
+                // Show all applications sorted by date (newest first)
+                const sortedApps = [...applications].sort((a, b) => b.id - a.id);
+                
+                sortedApps.forEach(app => {
+                    const appElement = document.createElement('div');
+                    appElement.className = `application-item ${app.status}`;
+                    
+                    // Format interest
+                    let interestText = '';
+                    switch(app.interest) {
+                        case 'villa': interestText = 'Вилла'; break;
+                        case 'mansion': interestText = 'Особняк'; break;
+                        case 'consultation': interestText = 'Консультация'; break;
+                        case 'tour': interestText = 'Private тур'; break;
+                        case 'price': interestText = 'Коммерческое предложение'; break;
+                        default: interestText = app.interest;
+                    }
+                    
+                    // Format status badge
+                    let statusBadge = '';
+                    switch(app.status) {
+                        case 'pending': 
+                            statusBadge = '<span class="status-badge status-pending">ОЖИДАЕТ</span>'; 
+                            break;
+                        case 'approved': 
+                            statusBadge = '<span class="status-badge status-approved">ОДОБРЕНО</span>'; 
+                            break;
+                        case 'rejected': 
+                            statusBadge = '<span class="status-badge status-rejected">ОТКЛОНЕНО</span>'; 
+                            break;
+                    }
+                    
+                    appElement.innerHTML = `
+                        <div class="application-content">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                                <div>
+                                    <h4 style="margin-bottom: 5px; font-size: 1.2rem;">${app.name}</h4>
+                                    <p style="color: #aaa; font-size: 13px;">ID: ${app.id} | ${app.date}</p>
+                                </div>
+                                ${statusBadge}
+                            </div>
+                            
+                            <p style="margin-bottom: 10px; font-size: 14px;">
+                                <i class="fas fa-phone" style="margin-right: 8px; color: #7f8c8d;"></i> 
+                                <strong>Телефон:</strong> ${app.phone}
+                            </p>
+                            
+                            <p style="margin-bottom: 10px; font-size: 14px;">
+                                <i class="fas fa-envelope" style="margin-right: 8px; color: #7f8c8d;"></i> 
+                                <strong>Email:</strong> ${app.email}
+                            </p>
+                            
+                            <p style="margin-bottom: 10px; font-size: 14px;">
+                                <i class="fas fa-home" style="margin-right: 8px; color: #7f8c8d;"></i> 
+                                <strong>Интерес:</strong> ${interestText}
+                            </p>
+                            
+                            ${app.message ? `<p style="margin-bottom: 15px; padding: 10px; background: rgba(0,0,0,0.1); border-radius: 8px; font-size: 14px;"><strong>Сообщение:</strong> ${app.message}</p>` : ''}
+                            
+                            ${app.notes ? `<p style="margin-bottom: 15px; padding: 10px; background: rgba(241, 196, 15, 0.1); border-radius: 8px; border-left: 3px solid #f1c40f; font-size: 14px;"><strong>Заметки:</strong> ${app.notes}</p>` : ''}
+                            
+                            <p style="font-size: 13px; color: #7f8c8d;">
+                                <i class="fas fa-user-tie" style="margin-right: 5px;"></i> 
+                                Назначен: ${app.assignedTo || 'Не назначен'}
+                            </p>
+                        </div>
+                        
+                        <div class="application-actions">
+                            ${app.status === 'pending' ? `
+                                <button class="btn-approve" onclick="updateApplicationStatus(${app.id}, 'approved')">
+                                    <i class="fas fa-check"></i> Одобрить
+                                </button>
+                                <button class="btn-reject" onclick="updateApplicationStatus(${app.id}, 'rejected')">
+                                    <i class="fas fa-times"></i> Отклонить
+                                </button>
+                            ` : ''}
+                            
+                            ${app.status !== 'pending' ? `
+                                <button class="btn-approve" onclick="updateApplicationStatus(${app.id}, 'pending')" style="background: #f39c12;">
+                                    <i class="fas fa-clock"></i> Вернуть
+                                </button>
+                            ` : ''}
+                            
+                            <button class="btn-delete" onclick="deleteApplication(${app.id})">
+                                <i class="fas fa-trash"></i> Удалить
+                            </button>
+                        </div>
+                    `;
+                    
+                    applicationsContainer.appendChild(appElement);
+                });
+            }
+        }
+
+        // Update application status
+        window.updateApplicationStatus = function(appId, newStatus) {
+            const applications = JSON.parse(localStorage.getItem('ansorRoyalCrownApplications')) || [];
+            const appIndex = applications.findIndex(app => app.id === appId);
+            
+            if (appIndex !== -1) {
+                applications[appIndex].status = newStatus;
+                
+                // Add note if approving or rejecting
+                if (newStatus === 'approved') {
+                    applications[appIndex].notes = `Заявка одобрена ${new Date().toLocaleString('ru-RU')}. Связаться с клиентом для организации встречи.`;
+                    showNotification(`Заявка №${appId} одобрена. Шохджахону Каримову отправлено уведомление.`, 'success');
+                } else if (newStatus === 'rejected') {
+                    applications[appIndex].notes = `Заявка отклонена ${new Date().toLocaleString('ru-RU')}. Причина: не соответствует критериям.`;
+                    showNotification(`Заявка №${appId} отклонена.`, 'error');
+                } else if (newStatus === 'pending') {
+                    applications[appIndex].notes = `Заявка возвращена в ожидание ${new Date().toLocaleString('ru-RU')}.`;
+                    showNotification(`Заявка №${appId} возвращена в ожидание.`, 'warning');
+                }
+                
+                localStorage.setItem('ansorRoyalCrownApplications', JSON.stringify(applications));
+                updateAdminPanel();
+            }
+        };
+
+        // Delete application
+        window.deleteApplication = function(appId) {
+            if (confirm('Вы уверены, что хотите удалить эту заявку? Это действие нельзя отменить.')) {
+                const applications = JSON.parse(localStorage.getItem('ansorRoyalCrownApplications')) || [];
+                const filteredApplications = applications.filter(app => app.id !== appId);
+                localStorage.setItem('ansorRoyalCrownApplications', JSON.stringify(filteredApplications));
+                showNotification(`Заявка №${appId} удалена`, 'warning');
+                updateAdminPanel();
+            }
+        };
+
+        // Explore button
+        document.getElementById('exploreBtn').addEventListener('click', function() {
+            document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Book tour button
+        document.getElementById('bookTourBtn').addEventListener('click', function() {
+            document.getElementById('application').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('interestObject').value = 'tour';
+            document.getElementById('clientMessage').value = 'Прошу организовать private тур по району Royal Crown Estate для ознакомления с резиденциями и инфраструктурой.';
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.feature-card, .application-form, .application-info, .section-title, .owner-image, .owner-info, .price-card, .manager-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(10, 61, 98, 0.98)';
+                header.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+            } else {
+                header.style.backgroundColor = 'rgba(10, 61, 98, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.15)';
+            }
+        });
+
+        // Add demo applications if none exist
+        window.addEventListener('load', function() {
+            if (!localStorage.getItem('ansorRoyalCrownApplications')) {
+                const demoApplications = [
+                    {
+                        id: 1001,
+                        name: "Алишер Усманов",
+                        phone: "+992 987 654 321",
+                        email: "alisher@example.com",
+                        interest: "mansion",
+                        message: "Интересует особняк с видом на парк площадью около 1000 м². Готов рассмотреть немедленную покупку. Бюджет обсудим при встрече.",
+                        date: "15.11.2023 14:30",
+                        status: "approved",
+                        assignedTo: "Шохджахон Каримов",
+                        notes: "Клиент серьезный, назначена встреча на 20.11.2023 в 15:00. Приготовить коммерческое предложение по участку №7."
+                    },
+                    {
+                        id: 1002,
+                        name: "Мадина Каримова",
+                        phone: "+992 555 123 456",
+                        email: "madina@example.com",
+                        interest: "tour",
+                        message: "Хотела бы записаться на private тур по району для семьи из 4 человек. Интересуемся виллой 600-700 м².",
+                        date: "14.11.2023 11:15",
+                        status: "pending",
+                        assignedTo: "Шохджахон Каримов",
+                        notes: ""
+                    },
+                    {
+                        id: 1003,
+                        name: "Рашид Азизов",
+                        phone: "+992 777 888 999",
+                        email: "rashid@example.com",
+                        interest: "villa",
+                        message: "Интересует вилла площадью около 600 м². Есть вопросы по системе безопасности и возможности индивидуальной планировки.",
+                        date: "13.11.2023 16:45",
+                        status: "rejected",
+                        assignedTo: "Шохджахон Каримов",
+                        notes: "Клиент не соответствует финансовым требованиям. Рекомендовано рассмотреть другие варианты."
+                    },
+                    {
+                        id: 1004,
+                        name: "Екатерина Волкова",
+                        phone: "+992 123 789 456",
+                        email: "ekaterina@example.com",
+                        interest: "price",
+                        message: "Прошу предоставить детальное коммерческое предложение по вилле Classica на участке №5. Интересует полная стоимость с учетом всех опций.",
+                        date: "12.11.2023 10:20",
+                        status: "approved",
+                        assignedTo: "Ансор (Владелец)",
+                        notes: "Отправлено КП 12.11.2023. Ждем ответа. Клиент потенциально готов к сделке в течение месяца."
+                    }
+                ];
+                
+                localStorage.setItem('ansorRoyalCrownApplications', JSON.stringify(demoApplications));
+            }
+            
+            // Initialize animations
+            document.querySelectorAll('.animate').forEach(el => {
+                el.style.opacity = '0';
+            });
+            
+            // Set initial mobile menu state
+            if (window.innerWidth <= 992) {
+                mobileMenuBtn.style.display = 'block';
+                navCloseBtn.style.display = 'none';
+            } else {
+                mobileMenuBtn.style.display = 'none';
+                navCloseBtn.style.display = 'none';
+            }
+        });
+
+        // Close modals on outside click
+        window.addEventListener('click', function(e) {
+            if (e.target === areaModal) {
+                areaModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+            if (e.target === loginModalElement) {
+                loginModalElement.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Add keyboard support for modals
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (areaModal.style.display === 'flex') {
+                    areaModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+                if (loginModalElement.style.display === 'flex') {
+                    loginModalElement.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    mobileMenuBtn.style.display = 'block';
+                    navCloseBtn.style.display = 'none';
+                }
+            }
+        });
+
+        // Fix for iOS Safari 100vh issue
+        function setHeroHeight() {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.height = window.innerHeight + 'px';
+            }
+        }
+
+        // Set initial height
+        setHeroHeight();
+        
+        // Update on resize
+        window.addEventListener('resize', setHeroHeight);
+        
+        // Update on orientation change
+        window.addEventListener('orientationchange', function() {
+            setTimeout(setHeroHeight, 300);
+        });
+    </script>
